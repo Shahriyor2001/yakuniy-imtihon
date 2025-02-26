@@ -1,8 +1,24 @@
 import Category from '../models/category.model.js';
 import { errorHandler } from '../utils/error.js';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Category:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The unique identifier for the category.
+ *         name:
+ *           type: string
+ *           description: The name of the category.
+ *       required:
+ *         - name
+ */
 export const createCategory = async (req, res, next) => {
-  const { name } = req.body;
+
   try {
     const category = await Category.create({ name });
     res.status(201).json(category);

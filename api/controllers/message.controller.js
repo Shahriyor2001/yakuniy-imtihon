@@ -11,8 +11,30 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Message:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: The email address of the sender.
+ *         phone:
+ *           type: string
+ *           description: The phone number of the sender.
+ *         message:
+ *           type: string
+ *           description: The content of the message being sent.
+ *       required:
+ *         - email
+ *         - phone
+ *         - message
+ */
 export const sendMessage = async (req, res, next) => {
-  const { email, phone, message } = req.body;
+
 
   // Validation
   if (!email || !phone || !message || email === '' || phone === '' || message === '') {

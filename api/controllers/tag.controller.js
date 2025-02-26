@@ -1,8 +1,24 @@
 import Tag from '../models/tag.model.js';
 import { errorHandler } from '../utils/error.js';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Tag:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The unique identifier for the tag.
+ *         name:
+ *           type: string
+ *           description: The name of the tag.
+ *       required:
+ *         - name
+ */
 export const createTag = async (req, res, next) => {
-  const { name } = req.body;
+
   try {
     const tag = await Tag.create({ name });
     res.status(201).json(tag);

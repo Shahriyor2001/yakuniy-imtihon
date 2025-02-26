@@ -3,8 +3,40 @@ import Category from '../models/category.model.js';
 import { errorHandler } from '../utils/error.js';
 
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Post:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The unique identifier for the post.
+ *         title:
+ *           type: string
+ *           description: The title of the post.
+ *         content:
+ *           type: string
+ *           description: The content of the post.
+ *         category:
+ *           type: string
+ *           description: The ID of the category the post belongs to.
+ *         userId:
+ *           type: string
+ *           description: The ID of the user who created the post.
+ *         slug:
+ *           type: string
+ *           description: The URL-friendly version of the post title.
+ *         image:
+ *           type: string
+ *           description: The URL of the post's image.
+ *       required:
+ *         - title
+ *         - content
+ */
 export const incrementViewCount = async (req, res, next) => {
-  const { postId } = req.params;
+
   try {
     await Post.findByIdAndUpdate(postId, { $inc: { views: 1 } });
     res.status(200).json({ message: 'View count incremented' });

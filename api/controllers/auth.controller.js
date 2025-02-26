@@ -3,8 +3,33 @@ import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Auth:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The username of the user.
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: The email address of the user.
+ *         password:
+ *           type: string
+ *           description: The password for the user account.
+ *         isAdmin:
+ *           type: boolean
+ *           description: Indicates if the user is an admin (default is true for signup).
+ *       required:
+ *         - username
+ *         - email
+ *         - password
+ */
 export const signup = async (req, res, next) => {
-  const { username, email, password } = req.body;
+
 
   if (
     !username ||
